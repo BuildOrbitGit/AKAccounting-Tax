@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/", "destination": "/AK-Accounting-Tax-website.html" }]
+}
