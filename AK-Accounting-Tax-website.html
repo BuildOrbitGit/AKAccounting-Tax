@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AK Accounting & Tax: Bookkeeping, Tax Prep & Financial Statements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep:   #1a3628;
+    --green-mid:    #2d6a4f;
+    --green-light:  #52b788;
+    --green-pale:   #e8f0e9;
+    --green-pale-2: #f2f6f2;
+    --teal-line:    #1e4d38;
+    --gold:         #c9a36e;
+    --gold-light:   #e8cfa0;
+    --ink:          #0f1c16;
+    --ink-soft:     #4a5e52;
+    --paper:        #f6f2eb;
+    --paper-card:   #ffffff;
+    --line:         #ddd8cc;
+
+    --font-display: 'Times New Roman', Times, serif;
+    --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Times New Roman', Times, serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  .wrap {
+    width: 100%;
+    padding: 0 56px;
+  }
+
+  /* ============ MOTION ============ */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.7s ease forwards;
+    }
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* ============ FOCUS ============ */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--green-deep);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ============ HEADER ============ */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26, 54, 40, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #ffffff;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .brand-name .amp { color: var(--gold-light); font-weight: 600; font-style: normal; }
+  .brand-sub {
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 3px;
+  }
+
+  nav.main-nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 100px;
+    padding: 5px;
+  }
+  .nav-cursor {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: calc(100% - 10px);
+    background: var(--gold);
+    border-radius: 100px;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+    transition: left 0.22s cubic-bezier(0.4,0,0.2,1),
+                width 0.22s cubic-bezier(0.4,0,0.2,1),
+                opacity 0.15s ease;
+  }
+  nav.main-nav a {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.78);
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin: 0;
+    letter-spacing: 0.04em;
+    transition: color 0.15s ease;
+  }
+  nav.main-nav a:hover { color: var(--ink); }
+
+  .header-cta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 11px 22px;
+    border-radius: 6px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    border-color: var(--green-deep);
+    color: var(--green-deep);
+    background: transparent;
+    letter-spacing: 0.02em;
+  }
+  .btn-ghost:hover { background: var(--green-pale); }
+  .btn-sm { padding: 9px 16px; font-size: 13.5px; }
+
+  .nav-toggle { display: none; }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--green-deep);
+    display: flex;
+    align-items: stretch;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-left {
+    padding: 100px 64px 100px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-right img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .hero-right-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--green-deep) 0%, rgba(26,54,40,0.3) 40%, transparent 100%);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold-light);
+    border: 1px solid rgba(201,163,110,0.35);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 80px;
+    line-height: 1.04;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero p.lede {
+    font-size: 17px;
+    color: rgba(255,255,255,0.72);
+    max-width: 460px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .hero-contacts {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .hero-contact {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.6);
+  }
+  .hero-contact svg { width: 16px; height: 16px; stroke: var(--gold); flex-shrink: 0; }
+  .hero-contact a { color: rgba(255,255,255,0.6); }
+  .hero-contact a:hover { color: var(--gold); }
+
+  /* ---- Hero visual: ledger / receipt stack ---- */
+  .hero-visual {
+    position: relative;
+    height: 360px;
+  }
+
+  .receipt {
+    position: absolute;
+    width: 280px;
+    background: var(--paper-card);
+    border-radius: 8px;
+    box-shadow: 0 12px 32px rgba(31,46,39,0.13);
+    padding: 22px 22px 18px;
+    border: 1px solid var(--line);
+  }
+
+  .receipt.back {
+    top: 8px;
+    right: 18px;
+    transform: rotate(5deg);
+    opacity: 0.55;
+    z-index: 1;
+  }
+  .receipt.mid {
+    top: 38px;
+    right: 48px;
+    transform: rotate(-3deg);
+    opacity: 0.8;
+    z-index: 2;
+  }
+  .receipt.front {
+    top: 70px;
+    right: 8px;
+    z-index: 3;
+  }
+
+  .receipt-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px dashed var(--line);
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+  .receipt-head .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+  .receipt-head .check {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .receipt-head .check svg { width: 11px; height: 11px; stroke: var(--green-deep); stroke-width: 3; }
+
+  .receipt-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 9px;
+    color: var(--ink);
+  }
+  .receipt-row .v { font-family: var(--font-mono); color: var(--ink-soft); }
+  .receipt-row.total {
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+    margin-top: 10px;
+    font-weight: 700;
+    color: var(--green-deep);
+  }
+  .receipt-row.total .v { color: var(--green-deep); font-weight: 700; }
+
+  .receipt-bars { display: flex; flex-direction: column; gap: 8px; }
+  .rbar { height: 6px; border-radius: 3px; background: var(--green-pale); position: relative; overflow: hidden; }
+  .rbar span { position: absolute; left: 0; top: 0; bottom: 0; background: var(--green-mid); border-radius: 3px; }
+
+  /* ============ SECTION SCAFFOLDING ============ */
+  section { padding: 48px 0; }
+  .section-pale { background: var(--green-pale-2); }
+
+  .section-head {
+    max-width: 600px;
+    margin-bottom: 52px;
+  }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+
+  .eyebrow-sm {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+    text-transform: none;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+  .section-head p { color: var(--ink-soft); font-size: 16.5px; line-height: 1.7; font-weight: 300; }
+
+  /* ============ SERVICES ============ */
+  .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(31,46,39,0.10);
+  }
+
+  .service-card {
+    flex: 1 1 0;
+    min-width: 220px;
+    padding: 36px 26px 30px;
+    position: relative;
+  }
+  .service-card:nth-child(1) { background: var(--green-deep); color: white; }
+  .service-card:nth-child(2) { background: var(--green-mid); color: white; }
+  .service-card:nth-child(3) { background: var(--green-light); color: var(--ink); }
+  .service-card:nth-child(4) { background: linear-gradient(160deg, #ffffff 0%, var(--green-pale) 100%); color: var(--ink); }
+
+  .service-icon { width: 40px; height: 40px; margin-bottom: 20px; }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 9px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .service-card p { font-size: 13.8px; line-height: 1.55; opacity: 0.92; }
+
+  /* ============ ABOUT / TRANSFORM ============ */
+  .transform {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 64px;
+    align-items: center;
+  }
+  .transform > * { flex: 1 1 420px; min-width: 320px; }
+
+  .transform-copy h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .transform-copy p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin-bottom: 16px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .transform-copy p strong { color: var(--ink); font-weight: 600; }
+
+  .stat-row {
+    display: flex;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .stat { margin-right: 36px; }
+  .stat .num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+  .stat .label {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+  }
+
+  /* messy-to-organized visual */
+  .organize-visual {
+    background: var(--paper-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(31,46,39,0.08);
+  }
+  .organize-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .organize-row:last-child { border-bottom: none; }
+  .organize-row .icon-sm {
+    width: 30px; height: 30px;
+    border-radius: 7px;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .organize-row .icon-sm svg { width: 16px; height: 16px; stroke: var(--green-deep); }
+  .organize-row .text { flex: 1; }
+  .organize-row .text .t1 { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .organize-row .text .t2 { font-size: 12.5px; color: var(--ink-soft); margin-top: 1px; }
+  .organize-row .status {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: rgba(201,163,110,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(201,163,110,0.3);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  /* ============ PROCESS ============ */
+  .process-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+  .process-item { position: relative; padding-top: 18px; flex: 1 1 0; min-width: 220px; }
+  .process-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 36px; height: 2px;
+    background: var(--green-mid);
+  }
+  .process-item .step-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .process-item h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .process-item p { font-size: 13.8px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ============ TESTIMONIAL ============ */
+  .testimonial {
+    background: var(--green-deep);
+    border-radius: 16px;
+    padding: 52px 56px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonial::before {
+    content: '"';
+    position: absolute;
+    top: -30px;
+    left: 24px;
+    font-family: var(--font-display);
+    font-size: 200px;
+    color: rgba(255,255,255,0.07);
+    line-height: 1;
+  }
+  .testimonial blockquote {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 24px;
+    color: rgba(255,255,255,0.95);
+  }
+  .testimonial .author { display: flex; align-items: center; gap: 14px; position: relative; z-index: 1; }
+  .testimonial .avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--green-deep);
+  }
+  .testimonial .author .name { font-weight: 600; font-size: 14.5px; }
+  .testimonial .author .role { font-size: 13px; opacity: 0.75; }
+
+  /* ============ FAQ ============ */
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 64px;
+    align-items: start;
+  }
+  .faq-list { width: 100%; }
+  .faq-photo {
+    position: sticky;
+    top: 100px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(31,46,39,0.16);
+  }
+  .faq-photo img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    display: block;
+  }
+  .faq-photo-caption {
+    background: var(--green-deep);
+    color: white;
+    padding: 18px 22px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .faq-photo-caption strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  @media (max-width: 880px) {
+    .faq-layout { grid-template-columns: 1fr; }
+    .faq-photo { display: none; }
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary .plus {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  .faq-item[open] summary .plus { transform: rotate(45deg); }
+  .faq-item p {
+    margin-top: 14px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.65;
+    max-width: 680px;
+  }
+
+  /* ============ CONTACT / CTA ============ */
+  .contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+  }
+  .contact-grid > * { flex: 1 1 420px; min-width: 320px; }
+
+  .contact-copy h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .contact-copy p { color: var(--ink-soft); font-size: 16px; margin-bottom: 28px; line-height: 1.75; font-weight: 300; }
+
+  .contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+  }
+  .contact-method:last-child { border-bottom: 1px solid var(--line); }
+  .contact-method .icon-sm {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-method .icon-sm svg { width: 18px; height: 18px; stroke: var(--gold); }
+  .contact-method .label { display: none; }
+  .contact-method .value {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .contact-method a.value:hover { color: var(--green-deep); }
+
+  .contact-form {
+    background: var(--paper-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(31,46,39,0.08);
+  }
+  .form-row { margin-bottom: 18px; }
+  .form-row label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 7px;
+  }
+  .form-row input, .form-row textarea, .form-row select {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1.5px solid var(--line);
+    border-radius: 7px;
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    color: var(--ink);
+    background: var(--paper);
+    transition: border-color 0.15s ease;
+  }
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+    outline: none;
+    border-color: var(--green-deep);
+  }
+  .form-row textarea { resize: vertical; min-height: 90px; }
+  .form-two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-submit { width: 100%; padding: 13px; font-size: 15px; margin-top: 6px; }
+  .form-note { font-size: 12px; color: var(--ink-soft); margin-top: 12px; text-align: center; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.85);
+    padding: 56px 0 28px;
+  }
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    margin-bottom: 24px;
+  }
+  .footer-top > * { flex: 1 1 220px; }
+  .footer-top > *:first-child { flex: 1.6 1 320px; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .footer-brand .brand-name { color: white; }
+  .footer-brand .brand-mark svg { stroke: var(--green-light); }
+  footer .col-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  footer p.desc { font-size: 13.5px; color: rgba(255,255,255,0.6); max-width: 320px; line-height: 1.6; }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  footer ul li, footer ul a { font-family: var(--font-body); font-size: 13.5px; color: rgba(255,255,255,0.75); transition: color 0.15s ease; }
+  footer ul a:hover { color: white; }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ============ HERO BACKDROP ============ */
+  .hero {
+    position: relative;
+  }
+  .hero-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    opacity: 0.055;
+  }
+  .hero-dot-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(63,110,46,0.22) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.7;
+  }
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+  .hero-blob-1 {
+    width: 580px; height: 580px;
+    background: radial-gradient(circle, rgba(124,179,66,0.22) 0%, transparent 65%);
+    top: -180px; right: -80px;
+  }
+  .hero-blob-2 {
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(46,93,79,0.16) 0%, transparent 65%);
+    bottom: -120px; left: -60px;
+  }
+  .hero-blob-3 {
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(174,213,129,0.2) 0%, transparent 65%);
+    top: 40px; left: 38%;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+
+  /* ============ WAVE DIVIDERS ============ */
+  .wave-divider {
+    line-height: 0;
+    overflow: hidden;
+  }
+  .wave-divider svg { display: block; width: 100%; }
+
+  /* ============ SECTION PHOTO BACKGROUNDS ============ */
+  .section-pale {
+    position: relative;
+  }
+  .section-photo-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+  .section-pale .wrap { position: relative; z-index: 1; }
+
+  /* ============ ENHANCED CARDS ============ */
+  .service-card {
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    overflow: hidden;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(31,46,39,0.18);
+    z-index: 2;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* ============ PROCESS CAROUSEL ============ */
+  .process-carousel { position: relative; }
+
+  .process-carousel-outer {
+    overflow: hidden;
+    padding: 0 10%;
+    margin: 0 -56px; /* bleed past wrap padding to allow peek */
+  }
+
+  .process-slides-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .process-slide {
+    flex: 0 0 clamp(360px, 52%, 640px);
+    background: var(--green-deep);
+    border-radius: 18px;
+    padding: 36px 44px 32px;
+    display: flex;
+    align-items: center;
+    gap: 52px;
+    color: white;
+    opacity: 0.38;
+    transform: scale(0.96);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    pointer-events: none;
+  }
+
+  .process-slide.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  .process-slide-num {
+    font-family: var(--font-display);
+    font-size: 100px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 140px;
+    text-align: center;
+  }
+
+  .process-slide-body { flex: 1; }
+
+  .process-slide-tag {
+    font-family: var(--font-body);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .process-slide h3 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .process-slide p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 440px;
+    font-weight: 300;
+  }
+
+  .process-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0 0;
+  }
+
+  .process-progress {
+    flex: 1;
+    height: 2px;
+    background: var(--line);
+    margin: 0 24px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .process-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--gold);
+  }
+
+  .process-dots { display: flex; gap: 8px; align-items: center; }
+  .process-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--line);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+  }
+  .process-dot.active { background: var(--gold); transform: scale(1.4); }
+
+  .process-nav { display: flex; gap: 8px; }
+  .process-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .process-btn:hover { background: var(--green-deep); border-color: var(--green-deep); color: white; }
+
+  @media (max-width: 880px) {
+    .process-carousel-outer { padding: 0 5%; margin: 0 -20px; }
+    .process-slide { flex-direction: column; gap: 20px; padding: 32px 28px; flex: 0 0 85%; }
+    .process-slide-num { font-size: 72px; min-width: auto; }
+  }
+
+  /* ============ ABOUT PHOTO STRIP ============ */
+  .about-photo-strip {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    height: 260px;
+    margin-top: 32px;
+    box-shadow: 0 8px 32px rgba(31,46,39,0.15);
+  }
+  .about-photo-strip img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .about-photo-strip-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(63,110,46,0.55) 0%, rgba(46,93,79,0.35) 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-photo-strip-overlay span {
+    color: white;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    padding: 0 24px;
+  }
+
+  /* ============ HERO FLOATING BADGE ============ */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 8px 16px 8px 10px;
+    box-shadow: 0 4px 18px rgba(31,46,39,0.10);
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .hero-badge .hb-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hero-badge .hb-icon svg { width: 14px; height: 14px; stroke: var(--green-deep); }
+  .hero-badge strong { color: var(--green-deep); }
+
+  /* ============ FLOATING STATS CARD ============ */
+  .float-stat-card {
+    position: absolute;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 8px 28px rgba(31,46,39,0.13);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-7px); }
+  }
+  .float-stat-card.card-a {
+    bottom: 20px;
+    left: -10px;
+    animation-delay: 0s;
+  }
+  .float-stat-card.card-b {
+    top: 28px;
+    left: -20px;
+    animation-delay: 2s;
+  }
+  .fsc-dot {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .fsc-dot svg { width: 18px; height: 18px; stroke: var(--green-deep); }
+  .fsc-label { font-size: 11px; color: var(--ink-soft); }
+  .fsc-val { font-family: var(--font-mono); font-size: 15px; font-weight: 600; color: var(--ink); }
+
+  /* ============ BTN GLOW ============ */
+  .btn-primary {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -60%;
+    width: 40%;
+    height: 200%;
+    background: rgba(255,255,255,0.2);
+    transform: skewX(-20deg);
+    transition: left 0.4s ease;
+  }
+  .btn-primary:hover::after { left: 130%; }
+
+  /* ============ CONTACT SECTION BG ============ */
+  #contact {
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-bg-blob {
+    position: absolute;
+    pointer-events: none;
+  }
+  .contact-bg-blob-1 {
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,179,66,0.12) 0%, transparent 65%);
+    filter: blur(60px);
+    top: -150px; right: -100px;
+  }
+  .contact-bg-blob-2 {
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(63,110,46,0.10) 0%, transparent 65%);
+    filter: blur(60px);
+    bottom: -100px; left: -80px;
+  }
+
+  /* ============ FOOTER ENHANCEMENT ============ */
+  footer {
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+  footer .wrap { position: relative; z-index: 1; }
+
+  /* ============ SECTION ICON ACCENT ============ */
+  .section-icon-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .section-icon-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--paper-card);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 8px 16px 8px 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    box-shadow: 0 2px 8px rgba(31,46,39,0.06);
+  }
+  .section-icon-pill svg { width: 15px; height: 15px; stroke: var(--green-deep); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 880px) {
+    nav.main-nav { display: none; }
+    .header-cta .btn-ghost { display: none; }
+    .hero-grid { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 72px 0 56px; }
+    .hero-right { height: 360px; }
+    .hero h1 { font-size: 48px; }
+    .transform { grid-template-columns: 1fr; }
+    .service-card { flex: 1 1 45%; }
+    .process-item { flex: 1 1 45%; }
+    .contact-grid { gap: 40px; }
+    .footer-top { gap: 32px; }
+    .testimonial { padding: 36px 28px; }
+    .testimonial blockquote { font-size: 22px; }
+    .section-head h2 { font-size: 40px; }
+    .transform-copy h2 { font-size: 38px; }
+    .contact-copy h2 { font-size: 38px; }
+    .process-list::before { display: none; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 20px; }
+    .service-card { flex: 1 1 100%; }
+    .process-item { flex: 1 1 100%; }
+    .form-two { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+    .hero h1 { font-size: 38px; }
+    .hero-left { padding: 56px 0 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div>
+        <div class="brand-name">AK <span class="amp">Accounting</span> &amp; Tax</div>
+        <div class="brand-sub">Bookkeeping &middot; Tax &middot; Advisory</div>
+      </div>
+    </div>
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-cursor" id="navCursor"></div>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#process">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="header-cta">
+      <a href="tel:+16045059892" class="btn btn-sm" style="border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.75);background:transparent;">+1 (604) 505-9892</a>
+      <a href="#contact" class="btn btn-primary btn-sm">Book a consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-grid">
+    <!-- Left: text content -->
+    <div class="wrap" style="padding-right:0;">
+      <div class="hero-left reveal">
+        <h1>Your books,<br><em>finally</em> in order.</h1>
+        <p class="lede">From day-to-day bookkeeping to year-end financial statements and tax preparation, providing comprehensive support for individuals and small businesses, with Amita's direct attention on every file.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Book a free consultation</a>
+          <a href="#services" class="btn btn-ghost" style="border-color:rgba(255,255,255,0.35);color:rgba(255,255,255,0.85);">See what we do</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: full-height photo -->
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=85" alt="Professional at work">
+      <div class="hero-right-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" style="padding-top:40px;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">What we do</span>
+      <h2>Comprehensive support, start to finish</h2>
+      <p>Whether you need someone to handle the monthly grind or step in once a year for filing, we cover the full cycle of keeping your finances organized and compliant.</p>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="16" height="20" rx="2"/>
+          <line x1="7" y1="6" x2="17" y2="6"/>
+          <circle cx="7" cy="10" r="0.6" fill="currentColor" stroke="none"/>
+          <circle cx="11" cy="10" r="0.6" fill="currentColor" stroke="none"/>
+          <circle cx="15" cy="10" r="0.6" fill="currentColor" stroke="none"/>
+          <circle cx="7" cy="14" r="0.6" fill="currentColor" stroke="none"/>
+          <circle cx="11" cy="14" r="0.6" fill="currentColor" stroke="none"/>
+          <circle cx="15" cy="14" r="0.6" fill="currentColor" stroke="none"/>
+          <circle cx="7" cy="18" r="0.6" fill="currentColor" stroke="none"/>
+          <circle cx="11" cy="18" r="0.6" fill="currentColor" stroke="none"/>
+          <circle cx="15" cy="18" r="0.6" fill="currentColor" stroke="none"/>
+        </svg>
+        <h3>Day-to-Day Bookkeeping</h3>
+        <p>Transactions categorized, accounts reconciled, and your books kept current. Weekly or monthly, your call.</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 3h8l4 4v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+          <polyline points="14 3 14 7 18 7"/>
+          <text x="7" y="13.5" font-size="5.5" font-weight="700" fill="currentColor" stroke="none" font-family="Arial, sans-serif">TAX</text>
+          <line x1="7" y1="16" x2="14" y2="16"/>
+          <path d="M15 15.5l5.5 5.5-2.2 0.6 -0.6 2.2z" fill="currentColor" stroke="none"/>
+        </svg>
+        <h3>Tax Preparation</h3>
+        <p>Personal and business returns prepared and filed accurately, with deductions you'd otherwise miss.</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="6" width="16" height="11" rx="1.2"/>
+          <rect x="4.3" y="8.7" width="3.4" height="2.8" rx="0.3"/>
+          <text x="4.85" y="10.95" font-size="2.6" font-weight="700" fill="currentColor" stroke="none" font-family="Arial, sans-serif">$</text>
+          <line x1="9.3" y1="9.6" x2="15.5" y2="9.6"/>
+          <line x1="4.3" y1="14" x2="13" y2="14"/>
+          <path d="M16 18.5l5.5-5.5 1.3 1.3-5.5 5.5-1.8 0.5z"/>
+        </svg>
+        <h3>Financial Statements</h3>
+        <p>Year-end statements that give you a clear, accurate picture of where the business actually stands.</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2.5 6.5a1.3 1.3 0 0 1 1.3-1.3H9l1.6 2.1H17a1.3 1.3 0 0 1 1.3 1.3v8a1.3 1.3 0 0 1-1.3 1.3H3.8a1.3 1.3 0 0 1-1.3-1.3z"/>
+          <circle cx="19" cy="15.5" r="3.6" fill="white"/>
+          <polyline points="17.3 15.6 18.5 16.8 20.8 14.3"/>
+        </svg>
+        <h3>Compliance &amp; Filing</h3>
+        <p>Deadlines tracked, remittances filed, and records kept audit-ready, so nothing slips through.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ ABOUT / TRANSFORM ============ -->
+<section id="about" class="section-pale">
+  <div class="section-photo-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80');"></div>
+  <div class="wrap transform">
+    <div class="organize-visual reveal">
+      <div class="organize-row">
+        <div class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="text"><div class="t1">Receipts &amp; invoices</div><div class="t2">Collected and categorized monthly</div></div>
+        <span class="status">Sorted</span>
+      </div>
+      <div class="organize-row">
+        <div class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 12h4"/><path d="M14 9l3 3-5 5"/></svg></div>
+        <div class="text"><div class="t1">Bank reconciliation</div><div class="t2">Matched against statements</div></div>
+        <span class="status">Balanced</span>
+      </div>
+      <div class="organize-row">
+        <div class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h4"/><path d="M8 17h6"/></svg></div>
+        <div class="text"><div class="t1">Year-end statement</div><div class="t2">Prepared and reviewed with you</div></div>
+        <span class="status">Ready</span>
+      </div>
+      <div class="organize-row">
+        <div class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><polyline points="9 14 11 16 15 12"/></svg></div>
+        <div class="text"><div class="t1">Tax return</div><div class="t2">Filed before the deadline</div></div>
+        <span class="status">Filed</span>
+      </div>
+    </div>
+
+    <div class="transform-copy reveal">
+      <span class="eyebrow-sm">Why AK Accounting &amp; Tax</span>
+      <h2>We turn a shoebox of receipts into a finished return.</h2>
+      <p>Whether your finances feel scattered (unreconciled accounts, missed deadlines, or a year-end nobody's touched) or you simply want someone reliable in your corner from the start, <strong>Amita brings order to it</strong>, one step at a time, so you always know exactly where things stand.</p>
+      <p>Amita Kumar is an independent accounting and tax consultant working directly with individuals and small business owners across the Lower Mainland. No call centres, no hand-offs. When you work with Amita, you work with Amita. Clients who come on board now get her full attention and a practice that's built around them from day one.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">1:1</div><div class="label">Direct client support</div></div>
+        <div class="stat"><div class="num">&lt;24h</div><div class="label">Typical response time</div></div>
+        <div class="stat"><div class="num">B.C.</div><div class="label">Based &amp; local</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ PROCESS ============ -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">How it works</span>
+      <h2>Four steps, no surprises</h2>
+      <p>A straightforward process whether you're signing on for monthly bookkeeping or a one-time filing.</p>
+    </div>
+
+    <div class="process-carousel reveal">
+      <div class="process-carousel-outer">
+        <div class="process-slides-track" id="processTrack">
+          <div class="process-slide active">
+            <div class="process-slide-num">01</div>
+            <div class="process-slide-body">
+              <span class="process-slide-tag">Talk</span>
+              <h3>Free Consultation</h3>
+              <p>We learn about your situation, personal, business, or both, and figure out exactly what kind of support you need before anything else.</p>
+            </div>
+          </div>
+          <div class="process-slide">
+            <div class="process-slide-num">02</div>
+            <div class="process-slide-body">
+              <span class="process-slide-tag">Gather</span>
+              <h3>Share Your Records</h3>
+              <p>Send over receipts, statements, and prior filings, digitally or in person, whatever is easiest for you. Nothing needs to be organized beforehand.</p>
+            </div>
+          </div>
+          <div class="process-slide">
+            <div class="process-slide-num">03</div>
+            <div class="process-slide-body">
+              <span class="process-slide-tag">Organize</span>
+              <h3>We Do the Work</h3>
+              <p>Books get reconciled, statements prepared, and returns put together with nothing left to chance. You will always know where things stand.</p>
+            </div>
+          </div>
+          <div class="process-slide">
+            <div class="process-slide-num">04</div>
+            <div class="process-slide-body">
+              <span class="process-slide-tag">File</span>
+              <h3>Review &amp; File</h3>
+              <p>We walk you through the results before anything is filed, then handle submission and confirm it is done. No chasing, no guessing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="process-controls">
+        <div class="process-dots">
+          <button class="process-dot active" data-index="0"></button>
+          <button class="process-dot" data-index="1"></button>
+          <button class="process-dot" data-index="2"></button>
+          <button class="process-dot" data-index="3"></button>
+        </div>
+        <div class="process-progress"><div class="process-progress-fill" id="processFill"></div></div>
+        <div class="process-nav">
+          <button class="process-btn process-prev">&#8592;</button>
+          <button class="process-btn process-next">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER SPOTLIGHT ============ -->
+<section class="section-pale">
+  <div class="wrap">
+    <div class="testimonial reveal" style="display:flex; flex-wrap:wrap; gap:36px; align-items:center;">
+      <div style="flex:0 0 auto;">
+        <div class="avatar" style="width:84px; height:84px; font-size:26px;">AK</div>
+      </div>
+      <div style="flex:1 1 420px; min-width:280px;">
+        <span class="eyebrow-sm" style="color: var(--green-light);">Meet your accountant</span>
+        <blockquote style="font-size:21px; margin-bottom:14px;">"I started AK Accounting &amp; Tax to give people the kind of attention that gets lost at a big firm, where you actually talk to the person doing your books, every time."</blockquote>
+        <div class="author">
+          <div>
+            <div class="name">Amita Kumar</div>
+            <div class="role">Founder &amp; Manager, AK Accounting &amp; Tax &middot; Greater Vancouver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="faq-layout reveal">
+      <div>
+        <div class="section-head" style="margin-bottom:36px;">
+          <span class="eyebrow-sm">Questions</span>
+          <h2 style="font-style:normal;">Good to know</h2>
+        </div>
+        <div class="faq-list">
+      <details class="faq-item">
+        <summary>Do you work with individuals or just businesses?<span class="plus">+</span></summary>
+        <p>Both. A lot of people start with a personal tax return and bring over a small business or self-employed income once they see how the process works.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How often do you handle bookkeeping?<span class="plus">+</span></summary>
+        <p>Weekly, monthly, or quarterly, whatever matches the size and pace of your business. We'll recommend a cadence during the consultation.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What do I need to bring to a first consultation?<span class="plus">+</span></summary>
+        <p>Just your most recent tax return or financial statements if you have them. Nothing needs to be organized beforehand, that's our job.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can you help if my books are behind by a year or more?<span class="plus">+</span></summary>
+        <p>Yes. Catch-up bookkeeping is a normal starting point for a lot of clients. We'll work through prior periods systematically to get you current.</p>
+      </details>
+      <details class="faq-item">
+        <summary>You're a newer practice, why should I trust you with my finances?<span class="plus">+</span></summary>
+        <p>Fair question. Amita brings hands-on accounting and tax experience to every engagement, and as a founding client you get her direct attention from day one, not a junior associate or a queue. Book a free consultation and see how she'd approach your situation before committing to anything.</p>
+      </details>
+        </div>
+      </div>
+
+      <div class="faq-photo">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80" alt="Professional accountant at work">
+        <div class="faq-photo-caption">
+          <strong>Direct, personal service</strong>
+          Every question answered by Amita, not a call centre.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="section-pale">
+  <div class="contact-bg-blob contact-bg-blob-1"></div>
+  <div class="contact-bg-blob contact-bg-blob-2"></div>
+  <div class="wrap contact-grid">
+    <div class="contact-copy reveal">
+      <span class="eyebrow-sm">Get in touch</span>
+      <h2>Let's get your finances in order.</h2>
+      <p>Reach out directly, or send a message with a bit about what you need. As a founding client, you'll work directly with Amita from the very first conversation.</p>
+
+      <div class="contact-method">
+        <div class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div><div class="label">Call or text</div><a class="value" href="tel:+16045059892">+1 (604) 505-9892</a></div>
+      </div>
+      <div class="contact-method">
+        <div class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div>
+        <div><div class="label">Email</div><a class="value" href="mailto:Akproaccting@gmail.com">Akproaccting@gmail.com</a></div>
+      </div>
+      <div class="contact-method">
+        <div class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="label">Office hours</div><div class="value">Monday to Friday, 9 A.M. to 5 P.M.</div></div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks, we\\'ll be in touch within one business day.';">
+      <div class="form-two">
+        <div class="form-row">
+          <label for="fname">First name</label>
+          <input id="fname" type="text" placeholder="Jordan" required>
+        </div>
+        <div class="form-row">
+          <label for="lname">Last name</label>
+          <input id="lname" type="text" placeholder="Lee" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="you@email.com" required>
+      </div>
+      <div class="form-row">
+        <label for="need">What do you need help with?</label>
+        <select id="need">
+          <option>Personal tax return</option>
+          <option>Business tax return</option>
+          <option>Monthly bookkeeping</option>
+          <option>Year-end financial statements</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="msg">Message</label>
+        <textarea id="msg" placeholder="Tell us a bit about your situation..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary form-submit">Request a free consultation</button>
+      <p class="form-note">We'll respond within one business day.</p>
+    </form>
+  </div>
+</section>
+
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-bg-pattern"></div>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-name">AK Accounting &amp; Tax</span>
+        </div>
+        <p class="desc">Bookkeeping, tax preparation, and year-end financial statements for individuals and small businesses across the Lower Mainland.</p>
+      </div>
+      <div>
+        <div class="col-title">Services</div>
+        <ul>
+          <li><a href="#services">Bookkeeping</a></li>
+          <li><a href="#services">Tax preparation</a></li>
+          <li><a href="#services">Financial statements</a></li>
+          <li><a href="#services">Compliance &amp; filing</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="col-title">Contact</div>
+        <ul>
+          <li><a href="tel:+16045059892">+1 (604) 505-9892</a></li>
+          <li><a href="mailto:Akproaccting@gmail.com">Akproaccting@gmail.com</a></li>
+          <li>Monday to Friday, 9 A.M. to 5 P.M.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AK Accounting &amp; Tax. All rights reserved.</span>
+      <span>Amita Kumar, Manager</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Process carousel
+(function () {
+  const track    = document.getElementById('processTrack');
+  const slides   = track.querySelectorAll('.process-slide');
+  const dots     = document.querySelectorAll('.process-dot');
+  const fill     = document.getElementById('processFill');
+  const outer    = document.querySelector('.process-carousel-outer');
+  const DURATION = 4500;
+  let current    = 0;
+  let startTime  = null;
+  let rafId, timeout;
+
+  function centerSlide() {
+    const outerStyle = window.getComputedStyle(outer);
+    const contentW = outer.offsetWidth - parseFloat(outerStyle.paddingLeft) - parseFloat(outerStyle.paddingRight);
+    const slideW   = slides[current].offsetWidth;
+    const gap      = 24;
+    const maxOffset = slides.length * (slideW + gap) - gap - contentW;
+    const rawOffset = current * (slideW + gap) - (contentW - slideW) / 2;
+    track.style.transform = 'translateX(' + (-Math.min(Math.max(0, rawOffset), Math.max(0, maxOffset))) + 'px)';
+  }
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    centerSlide();
+    fill.style.width = '0%';
+    startTime = performance.now();
+    clearTimeout(timeout);
+    timeout = setTimeout(() => goTo(current + 1), DURATION);
+  }
+
+  function animateFill(ts) {
+    if (startTime !== null) {
+      fill.style.width = Math.min(((ts - startTime) / DURATION) * 100, 100) + '%';
+    }
+    rafId = requestAnimationFrame(animateFill);
+  }
+
+  dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.index)));
+  document.querySelector('.process-prev').addEventListener('click', () => goTo(current - 1));
+  document.querySelector('.process-next').addEventListener('click', () => goTo(current + 1));
+
+  const carousel = document.querySelector('.process-carousel');
+  carousel.addEventListener('mouseenter', () => { clearTimeout(timeout); cancelAnimationFrame(rafId); });
+  carousel.addEventListener('mouseleave', () => {
+    const elapsed = parseFloat(fill.style.width) / 100 * DURATION;
+    startTime = performance.now() - elapsed;
+    timeout = setTimeout(() => goTo(current + 1), DURATION - elapsed);
+    rafId = requestAnimationFrame(animateFill);
+  });
+
+  window.addEventListener('resize', centerSlide);
+
+  new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) {
+      clearTimeout(timeout);
+      cancelAnimationFrame(rafId);
+      goTo(0);
+    }
+  }, { threshold: 0 }).observe(carousel);
+
+  centerSlide();
+  startTime = performance.now();
+  timeout = setTimeout(() => goTo(1), DURATION);
+  rafId = requestAnimationFrame(animateFill);
+})();
+
+// Nav cursor
+(function () {
+  const nav = document.getElementById('mainNav');
+  const cursor = document.getElementById('navCursor');
+  const links = nav.querySelectorAll('a');
+
+  function moveCursor(link) {
+    const navRect = nav.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    cursor.style.left = (linkRect.left - navRect.left) + 'px';
+    cursor.style.width = linkRect.width + 'px';
+    cursor.style.opacity = '1';
+    links.forEach(l => l.style.color = '');
+    link.style.color = 'var(--ink)';
+  }
+
+  links.forEach(link => {
+    link.addEventListener('mouseenter', () => moveCursor(link));
+  });
+
+  nav.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+    links.forEach(l => l.style.color = '');
+  });
+})();
+</script>
+</body>
+</html>
