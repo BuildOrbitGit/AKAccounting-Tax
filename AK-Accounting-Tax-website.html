@@ -1672,12 +1672,21 @@
   window.addEventListener('resize', centerSlide);
 
   new IntersectionObserver(entries => {
-    if (!entries[0].isIntersecting) {
+    if (entries[0].isIntersecting) {
+      goTo(0);
+      rafId = requestAnimationFrame(animateFill);
+    } else {
       clearTimeout(timeout);
       cancelAnimationFrame(rafId);
-      goTo(0);
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = 0;
+      slides[0].classList.add('active');
+      dots[0].classList.add('active');
+      centerSlide();
+      fill.style.width = '0%';
     }
-  }, { threshold: 0 }).observe(carousel);
+  }, { threshold: 0.2 }).observe(carousel);
 
   centerSlide();
   startTime = performance.now();
