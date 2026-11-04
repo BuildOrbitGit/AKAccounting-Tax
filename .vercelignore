@@ -1,0 +1,3 @@
+# Keep local tool folders off the public site
+.claude
+.omc
